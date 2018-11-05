@@ -16,9 +16,9 @@ module.exports = {
       type: req.body.type,
       amount: req.body.amount,
       business_name: req.body.business_name
-    })
-    .then(()=>{
-      res.sendStatus(200)
+    }, '*')
+    .then((response)=>{
+      res.json(response)
     })
   },
   removeTransaction: (req, res) => {

@@ -13,7 +13,7 @@ module.exports = {
         .then((isMatch)=>{
           // if user is valid
           if(isMatch){
-            let token = jwt.sign({ user: user[0] }, 'secretkey', { expiresIn: 300 });
+            let token = jwt.sign({ user: user[0] }, 'secretkey', { expiresIn: 3000 });
             res.json({ token });
           }else{
             res.json({ message: 'Invalid Email/Password' });
