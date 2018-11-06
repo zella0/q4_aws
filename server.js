@@ -10,10 +10,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", `*`);
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE,PATCH");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
   next();
 });
-
 
 var routes_setter = require('./config/routes.js');
 routes_setter(app);

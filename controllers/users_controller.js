@@ -28,11 +28,20 @@ module.exports = {
     hasher.hash(req.body)
     .then((user)=>{
       knex('users')
-      .insert(user)
-      .then(()=>{
-        res.json({ message: 'User has been created' })
+      .where('email', req.body.email)
+      .count('email', req.body.email)
+      .then((response)=>{
+        if (Number(response[0].count) >= 1) {
+          res.json({ message: 'Email address already exists' })
+        }else{
+          knex('users')
+          .insert(user)
+          .then(()=>{
+            res.json({ message: 'User has been created' })
+          })
+        }
       })
+    
     })
   }
-
 }
